@@ -34,7 +34,7 @@ The AWS services used in this test are:
 
 1. Clone the repository containing the code: *git clone https://github.com/jcgarridog/itrs.git*
 2. Change to the itrs directory: *cd itrs*
-3. Edit the file variables.tf and assign the proper values to aws_access_key and aws_secret_key. For security reasons they are not provided in the scripts.
+3. Edit the file variables.tf and assign the proper values to *aws_access_key* and *aws_secret_key*. For security reasons they are not provided in the scripts.
 4. Execute the command: *terraform init*
 5. Execute the command: *terraform apply*
 
