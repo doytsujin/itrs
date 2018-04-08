@@ -38,7 +38,9 @@ The AWS services used in this test are:
 4. Execute the command: *terraform init*
 5. Execute the command: *terraform apply*
 
-Once step 5 has finished the environment should be already deployed. You can access the AWS console and check that the virtual machines, subnets, etc. have been created. Please pay attention to the region selected in the console, as the virtual machines have been created in Paris.
+Once step 5 has finished the environment should be already deployed. You can access the AWS console and check that the virtual machines, subnets, etc. have been created, and read the public IP or DNS name of the fron-end server. Please pay attention to the region selected in the console, as the virtual machines have been created in Paris.
+
+You can open a web browser and visit the URL http://<frontend-public-ip>/calldb.php
 
 When you are done with the environment you can get rid of it running the command: *terraform destroy*
 
@@ -82,4 +84,24 @@ In this file, three things were accomplished: the private Route53 DNS zone was c
 
 We create 2 different security groups, one for the front-end and the other one for the database. All the outbound traffic is allowed but only specific services are allowed for incoming traffic.
 
+### ec2-vm.tf
 
+#### The database machine
+
+This machine is placed in the private subnet and has its security group. The userdata performs the following actions:
+
+* Update the OS
+* Install the MySQL server and run it
+* Configure the root user to grant access from other machines
+* Create a table in the test database and add one line inside
+
+There is a dependency on the NAT Gateway in order to be able to update the OS and install MySQL server.
+
+#### The front-end machine
+
+It is placed in the public subnet so it is possible to reach it from your browser using port 80. The userdata performs the following actions:
+
+* Update the OS
+* Install the Apache web server and its php module
+* Start the Apache
+* Using the echo command place in the public html directory, a php file that reads the value inside the database created in the other EC2
