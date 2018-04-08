@@ -38,7 +38,7 @@ The AWS services used in this test are:
 4. Execute the command: *terraform init*
 5. Execute the command: *terraform apply*
 
-Once step 5 has finished the environment should be already deployed. You can access the AWS console and check that the virtual machines, subnets, etc. have been created, and read the public IP or DNS name of the fron-end server. Please pay attention to the region selected in the console, as the virtual machines have been created in Paris.
+Once step 5 has finished the environment should be already deployed. You can access the AWS console and check that the virtual machines, subnets, etc. have been created, and read the public IP or DNS name of the front-end server. Please pay attention to the region selected in the console, as the virtual machines have been created in Paris.
 
 You can open a web browser and visit the URL http://frontend-public-ip/calldb.php
 
